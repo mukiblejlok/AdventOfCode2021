@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Position:
 
     def __init__(self, x: int = 0, y: int = 0, aim: int = 0):
@@ -8,28 +5,24 @@ class Position:
         self.y = y
         self.aim = aim
 
-    def move(self, movement: str, value: int):
+    def move(self, movement: str, value: int) -> None:
         movement = str(movement).casefold()
         value = int(value)
         if movement == "forward":
             self.x += value
-
         if movement == "up":
             self.y -= value
-
         if movement == "down":
             self.y += value
 
-    def move_with_aim(self, movement: str, value: int):
+    def move_with_aim(self, movement: str, value: int) -> None:
         movement = str(movement).casefold()
         value = int(value)
         if movement == "forward":
             self.x += value
             self.y += self.aim * value
-
         if movement == "up":
             self.aim -= value
-
         if movement == "down":
             self.aim += value
 
@@ -54,7 +47,6 @@ if __name__ == '__main__':
     for step in test_case:
         p1.move(*step.split())
         p2.move_with_aim(*step.split())
-        print(step, p2)
     assert p1.x * p1.y == expected_value_p1, p1
     assert p2.x * p2.y == expected_value_p2, p2
 
@@ -68,4 +60,4 @@ if __name__ == '__main__':
             p2.move_with_aim(*step)
 
     print(f"Part 1: {p1} X*Y: {p1.x * p1.y}")
-    print(f"Part 2: {p2} X*DEPTH: {p2.x * p2.y}")
+    print(f"Part 2: {p2} X*Y: {p2.x * p2.y}")
