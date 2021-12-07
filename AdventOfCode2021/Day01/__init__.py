@@ -1,3 +1,4 @@
+import time
 from typing import List
 
 
@@ -16,9 +17,9 @@ def no_of_positive_numbers(numbers: List[int]) -> int:
 if __name__ == '__main__':
     with open("data.txt", "r") as f:
         measurements = [int(line.strip()) for line in f.readlines()]
-
+    t = time.perf_counter()
     no_of_positive_diffs = no_of_positive_numbers(diff(measurements))
-    print(f"Part 1: {no_of_positive_diffs}")
-
+    print(f"Part 1: {no_of_positive_diffs} (t: {1000*(time.perf_counter() - t):.3f} ms)")
+    t = time.perf_counter()
     no_of_positive_diffs3 = no_of_positive_numbers(diff(sum_window_3(measurements)))
-    print(f"Part 2: {no_of_positive_diffs3}")
+    print(f"Part 2: {no_of_positive_diffs3} (t: {1000*(time.perf_counter() - t):.3f} ms)")

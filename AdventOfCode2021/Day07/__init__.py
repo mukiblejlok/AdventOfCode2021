@@ -64,9 +64,9 @@ if __name__ == '__main__':
     data = load_case("data.txt")
     t = time.perf_counter()
     min_distance_p1, best_point_p1 = find_closest_point(data, distance_func=distance_p1)
-    print(f"Part1: {min_distance_p1:>10} (p: {best_point_p1}, t: {time.perf_counter() - t:.3f})")
+    print(f"Part1: {min_distance_p1:>10} (p: {best_point_p1}, t: {1000*(time.perf_counter() - t):.3f} ms)")
 
     # Part 2
     t = time.perf_counter()
     min_distance_p2, best_point_p2 = find_closest_point(data, distance_func=distance_p2)
-    print(f"Part2: {min_distance_p2:>10} (p: {best_point_p2}, t: {time.perf_counter() - t:.3f})")
+    print(f"Part2: {min_distance_p2:>10} (p: {best_point_p2}, t: {1000*(time.perf_counter() - t):.3f} ms)")

@@ -1,3 +1,4 @@
+import time
 from typing import List
 
 
@@ -32,10 +33,16 @@ if __name__ == '__main__':
     test_sea = Sea(fishes=test_initial_state)
     assert test_sea.simulate_days(256) == 26984457539
 
-    # Part 1 & 2
     with open("data.txt", "r") as f:
         initial_state = [int(i) for i in f.readline().strip().split(",")]
+    # Part 1
     data_sea = Sea(initial_state)
-    print(f"Part1: {data_sea.simulate_days(80)}")
+    t = time.perf_counter()
+    result_p1 = data_sea.simulate_days(80)
+    print(f"Part1: {result_p1:>15} (t: {1000*(time.perf_counter() - t):.3f} ms)")
+
+    # Part 2
     data_sea = Sea(initial_state)
-    print(f"Part2: {data_sea.simulate_days(256)}")
+    t = time.perf_counter()
+    result_p2 = data_sea.simulate_days(256)
+    print(f"Part2: {result_p2:>15} (t: {1000*(time.perf_counter() - t):.3f} ms)")

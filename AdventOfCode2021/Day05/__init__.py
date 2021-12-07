@@ -1,4 +1,5 @@
 import dataclasses
+import time
 from collections import Counter
 from typing import Optional, List
 
@@ -80,11 +81,14 @@ if __name__ == '__main__':
     assert sum(1 for value in c_test2.values() if value > 1) == 12
 
     pipes = load_case("data.txt")
+    t = time.perf_counter()
     c_p1 = Counter(point for pipe in pipes for point in pipe.list_points(include_diagonal=False))
     result_p1 = sum(1 for value in c_p1.values() if value > 1)
-    print(f"Part1: {result_p1}")
+    print(f"Part1: {result_p1:>8} (t: {1000*(time.perf_counter() - t):.3f} ms)")
+
 
     pipes = load_case("data.txt")
+    t = time.perf_counter()
     c_p2 = Counter(point for pipe in pipes for point in pipe.list_points(include_diagonal=True))
     result_p2 = sum(1 for value in c_p2.values() if value > 1)
-    print(f"Part2: {result_p2}")
+    print(f"Part2: {result_p2:>8} (t: {1000*(time.perf_counter() - t):.3f} ms)")

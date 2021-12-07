@@ -1,3 +1,4 @@
+import time
 from typing import Sequence, List, Tuple, Optional
 
 
@@ -94,10 +95,12 @@ if __name__ == '__main__':
 
     # Part 1
     numbers, boards = load_case("data.txt")
+    t = time.perf_counter()
     winning_board = get_first_winning_board(numbers, boards)
-    print(f"Part 1: {winning_board.score}")
+    print(f"Part 1: {winning_board.score} (t: {1000*(time.perf_counter() - t):.3f} ms)")
 
     # Part 1
     numbers, boards = load_case("data.txt")
+    t = time.perf_counter()
     last_board = get_last_winning_board(numbers, boards)
-    print(f"Part 2: {last_board.score}")
+    print(f"Part 2: {last_board.score} (t: {1000*(time.perf_counter() - t):.3f} ms)")

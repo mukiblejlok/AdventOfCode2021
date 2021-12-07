@@ -1,3 +1,4 @@
+import time
 from collections import Counter
 from typing import List
 
@@ -62,16 +63,18 @@ if __name__ == '__main__':
     with open("data.txt", "r") as f:
         data = [line.strip() for line in f.readlines()]
     # Part 1
+    t = time.perf_counter()
     data_count = count_bits(data)
     most_common_bit_string = "".join([counter.most_common()[0][0] for counter in data_count])
     least_common_bit_string = "".join([counter.most_common()[-1][0] for counter in data_count])
     most_common_int = int(most_common_bit_string, 2)
     least_common_int = int(least_common_bit_string, 2)
-    print(f"Part 1: {most_common_int * least_common_int}")
+    print(f"Part 1: {most_common_int * least_common_int} (t: {1000*(time.perf_counter() - t):.3f} ms)")
 
     # Part 2
+    t = time.perf_counter()
     p2_most_common_str = filter_out_string(data, most_common=True)
     p2_least_common_str = filter_out_string(data, most_common=False)
     p2_most_common_int = int(p2_most_common_str, 2)
     p2_least_common_int = int(p2_least_common_str, 2)
-    print(f"Part 2: {p2_most_common_int * p2_least_common_int}")
+    print(f"Part 2: {p2_most_common_int * p2_least_common_int} (t: {1000*(time.perf_counter() - t):.3f} ms)")

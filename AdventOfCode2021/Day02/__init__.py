@@ -1,3 +1,6 @@
+import time
+
+
 class Position:
 
     def __init__(self, x: int = 0, y: int = 0, aim: int = 0):
@@ -51,6 +54,7 @@ if __name__ == '__main__':
     assert p2.x * p2.y == expected_value_p2, p2
 
     # Part 1 & 2
+    t = time.perf_counter()
     p1 = Position()
     p2 = Position()
     with open("data.txt", "r") as f:
@@ -60,4 +64,4 @@ if __name__ == '__main__':
             p2.move_with_aim(*step)
 
     print(f"Part 1: {p1} X*Y: {p1.x * p1.y}")
-    print(f"Part 2: {p2} X*Y: {p2.x * p2.y}")
+    print(f"Part 2: {p2} X*Y: {p2.x * p2.y} (t: {1000*(time.perf_counter() - t):.3f} ms)")
