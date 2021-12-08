@@ -12,37 +12,37 @@ def count_easy_ones(values):
 
 def guess_mapping(values):
     # Part one, guess the obvious ones
-    guesses = {}
+    guessed = {}
     by_length = defaultdict(list)
     for value in values:
         sv = set(value)
         lv = len(value)
         if lv in INITIAL_MAPPING:
-            guesses[INITIAL_MAPPING[lv]] = sv
+            guessed[INITIAL_MAPPING[lv]] = sv
         elif sv not in by_length[lv]:
             by_length[lv].append(sv)
 
     # Deduct the others
     # Find 6 - the only six segments' one that include delta 8 - 1
-    s8m1 = guesses[8] - guesses[1]
-    guesses[6] = [x for x in by_length[6] if s8m1.issubset(x)][0]
-    by_length[6].remove(guesses[6])
+    s8m1 = guessed[8] - guessed[1]
+    guessed[6] = [x for x in by_length[6] if s8m1.issubset(x)][0]
+    by_length[6].remove(guessed[6])
     # Find 5 - the only five segments' one that is a subset of 6
-    guesses[5] = [x for x in by_length[5] if x.issubset(guesses[6])][0]
-    by_length[5].remove(guesses[5])
+    guessed[5] = [x for x in by_length[5] if x.issubset(guessed[6])][0]
+    by_length[5].remove(guessed[5])
     # Find 9 - the only six segments' one that differs with 5 by only one segment
-    guesses[9] = [x for x in by_length[6] if len(x - guesses[5]) == 1][0]
-    by_length[6].remove(guesses[9])
+    guessed[9] = [x for x in by_length[6] if len(x - guessed[5]) == 1][0]
+    by_length[6].remove(guessed[9])
     # Find 3 - the only five segments' one that is superset of 1
-    guesses[3] = [x for x in by_length[5] if x.issuperset(guesses[1])][0]
-    by_length[5].remove(guesses[3])
+    guessed[3] = [x for x in by_length[5] if x.issuperset(guessed[1])][0]
+    by_length[5].remove(guessed[3])
     # Find 2 - remaining five segments' one
-    guesses[2] = by_length[5].pop(0)
+    guessed[2] = by_length[5].pop(0)
     # Find 0 - remaining six segments' ones
-    guesses[0] = by_length[6].pop(0)
+    guessed[0] = by_length[6].pop(0)
 
     # Swap keys and values so it's easier to look it up
-    mapping = {frozenset(v): k for k, v in guesses.items()}
+    mapping = {frozenset(v): k for k, v in guessed.items()}
     return mapping
 
 
