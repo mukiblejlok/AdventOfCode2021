@@ -51,7 +51,7 @@ def multiply_data(data: List[List[int]], factor: int = 2) -> List[List[int]]:
         for row in data:
             new_row = []
             for fx in range(factor):
-                new_row += [((element-1 + fx + fy) % 9 + 1) for element in row]
+                new_row += [((element - 1 + fx + fy) % 9 + 1) for element in row]
             new_data.append(new_row)
     return new_data
 
@@ -109,7 +109,7 @@ def find_shortest_path(
 def plot_path(data, path):
     plt.imshow(data, cmap=cm.Reds)
     plt.plot(*path[0], "bo", linestyle="none")
-    plt.plot(*path[-1], "b<", linestyle="none")
+    plt.plot(*path[-1], "b.", linestyle="none")
     for p0, p1 in zip(path, path[1:]):
         plt.plot([p0[0], p1[0]], [p0[1], p1[1]], "b")
     plt.show()
